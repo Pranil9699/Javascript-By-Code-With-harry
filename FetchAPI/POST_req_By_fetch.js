@@ -11,6 +11,14 @@ const createTodo = async (todo) => {
   return response;
 };
 
+const getTodo = async (id) => {
+  let response = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${id}`
+  );
+  let r = await response.json();
+  return r;
+};
+
 const main2 = async () => {
   let todo = {
     userId: 10,
@@ -20,6 +28,10 @@ const main2 = async () => {
   };
   let todor = await createTodo(todo);
   console.log(todor);
+  let id = 90;
+  console.log(`Getting the Todo ${id}`);
+//   let getTodo =  getTodo(id);
+  console.log(await getTodo(id));
 };
 
 main2();
