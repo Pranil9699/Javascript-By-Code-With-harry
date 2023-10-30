@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100 p-4">
+    <h1 class="text-2xl text-center mb-8">QR Code Generator</h1>
+
+    <div class="flex flex-col items-center space-y-4">
+      <div class="w-96">
+        <label for="name" class="block">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" class="w-full p-2 border border-gray-400 rounded" />
+      </div>
+
+      <div class="w-96">
+        <label for="phone" class="block">Phone Number:</label>
+        <input type="text" id="phone" placeholder="Enter your phone number" class="w-full p-2 border border-gray-400 rounded" />
+      </div>
+
+      <div class="w-96">
+        <label for="github" class="block">GitHub Username:</label>
+        <input type="text" id="github" placeholder="Enter your GitHub username" class="w-full p-2 border border-gray-400 rounded" />
+      </div>
+
+      <div class="w-96">
+        <label for="linkedin" class="block">LinkedIn Profile URL:</label>
+        <input type="text" id="linkedin" placeholder="Enter your LinkedIn profile URL" class="w-full p-2 border border-gray-400 rounded" />
+      </div>
+
+      <div class="w-96">
+        <label for="instagram" class="block">Instagram Username:</label>
+        <input type="text" id="instagram" placeholder="Enter your Instagram username" class="w-full p-2 border border-gray-400 rounded" />
+      </div>
+
+      <button onclick="generateQRCode()" class="w-96 p-2 bg-blue-500 text-white rounded hover-bg-blue-700 transition">
+        Generate QR Code
+      </button>
+    </div>
+
+    <div class="mt-8 mx-auto w-full sm-w-3/4 md-w-2/3 lg-w-1/2 xl-w-1/3">
+      <div id="qrcode-container"></div>
+      <a id="downloadLink" style="display: none" download="user_qr_code.png">Download QR Code</a>
+    </div>
+
+    <script>
+      function isValidLinkedInUrl(url) {
+        // Check if the LinkedIn URL matches the expected format
+        return /^https:\/\/www\.linkedin\.com\/in\/[A-Za-z0-9-]+/.test(url);
+      }
+
+      function generateQRCode() {
+        // Clear the existing QR code if it exists
+        const qrcodeContainer = document.getElementById("qrcode-container");
+        qrcodeContainer.innerHTML = "";
+
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const github = document.getElementById("github").value;
+        const linkedinUrl = document.getElementById("linkedin").value;
+        const instagram = document.getElementById("instagram").value;
+
+        // Check if the phone number is in the correct Indian format (10 digits)
+        if (phone.length !== 10 || !/^\d+$/.test(phone)) {
+          alert("Invalid Indian phone number!");
+          return;
+        }
+
+        // Construct the GitHub profile link
+        const githubProfileLink = `https://github.com/${github}`;
+
+        // Initialize the LinkedIn profile link to an empty string
+        let linkedinProfileLink = '';
+
+        // Check if the entered LinkedIn URL is valid
+        if (isValidLinkedInUrl(linkedinUrl)) {
+          linkedinProfileLink = linkedinUrl;
+        } else {
+          alert("Invalid LinkedIn profile URL. It will not be included in the QR code.");
+        }
+
+        // Construct the Instagram profile link
+        const instagramProfileLink = `https://www.instagram.com/${instagram}`;
+
+        // Combine name, phone number, and social media links
+        const data = `MECARD:N:${name};TEL:${phone};URL:${githubProfileLink};URL:${linkedinProfileLink};URL:${instagramProfileLink};`;
+
+        // Create a new QR code
+        const qrcode = new QRCode(qrcodeContainer, {
+          text: data,
+          width: 128,
+          height: 128,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+
+        // Get the image source from the QR code image
+        const qrcodeImgSrc = qrcodeContainer.getElementsByTagName("img")[0].src;
+
+        // Automatically trigger the download
+        const downloadLink = document.getElementById("downloadLink");
+        downloadLink.href = qrcodeImgSrc;
+        downloadLink.style.display = "block";
+      }
+    </script>
+  </body>
+</html>
+

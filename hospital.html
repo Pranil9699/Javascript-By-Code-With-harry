@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+  <style>
+    /* CSS styling for the navbar and other sections */
+    ul.navbar {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+      overflow: hidden;
+    }
+
+    ul.navbar li {
+      float: left;
+    }
+
+    ul.navbar li.logo {
+      padding: 10px;
+    }
+
+    ul.navbar li.logo img {
+      height: 40px;
+    }
+
+    ul.navbar li a {
+      display: block;
+      color: #333;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    ul.navbar li a:hover {
+      background-color: #ddd;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .carousel {
+      width: 70%;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+
+    .about {
+      width: 30%;
+      background-color: #e6e6e6;
+      padding: 20px;
+    }
+
+    .about input[type="text"],
+    .about textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .about textarea {
+      height: 100px;
+    }
+
+    /* CSS styling for the Slick Carousel */
+    .slick-slide {
+      display: none;
+    }
+
+    .slick-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <ul class="navbar">
+    <li class="logo"><img src="icons8-hospital-64.png" alt="Hospital Logo"></li>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Doctors</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+
+  <div class="container">
+    <div class="carousel">
+      <div class="slick">
+        <div><img src="https://i.pinimg.com/originals/5b/5e/b1/5b5eb1f13af871b782000f0409c12db8.jpg" alt="Slide 1"></div>
+        <div><img src="https://th.bing.com/th/id/OIP.k7c_AaITTbgtQwZyTlrsLwHaE8?pid=ImgDet&rs=1" alt="Slide 2"></div>
+        <div><img src="https://th.bing.com/th/id/OIP.U_9UCpohh7W64PoEHkhoNAHaE8?pid=ImgDet&rs=1" alt="Slide 3"></div>
+      </div>
+    </div>
+    <div class="about">
+      <!-- About Hospital HTML content goes here -->
+      <h2>About Hospital</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac neque sed nibh consequat vestibulum. Aenean id dui sed metus commodo rhoncus. Curabitur eu lacinia ipsum. Sed vel eleifend est. In ac tincidunt orci. Fusce hendrerit ligula a metus semper efficitur. Mauris ut ullamcorper lorem. Donec aliquet mollis turpis id ultricies. Integer sollicitudin nunc nec nunc posuere pharetra. Ut efficitur fringilla enim, ac malesuada libero vestibulum ut. Morbi aliquam eleifend sem, id semper turpis gravida et.</p>
+      <p>Sed finibus consequat libero, eu bibendum eros posuere non. Duis varius interdum metus, ut viverra tortor euismod eu. In porttitor pharetra metus, sed suscipit quam commodo nec. Donec vulputate congue congue. Aliquam erat volutpat. Mauris vel dignissim mauris. Mauris non est quam. Proin semper fringilla est sed pellentesque. Nunc auctor ex at tortor suscipit, vel volutpat turpis rhoncus. Duis interdum semper mi, in semper quam efficitur sed.</p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.slick').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        fade: true,
+        cssEase: 'linear',
+        prevArrow: false,
+        nextArrow: false
+      });
+    });
+  </script>
+</body>
+</html>

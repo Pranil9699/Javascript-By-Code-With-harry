@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script type="text/javascript">
+        alert("Welcome to Snake Water Gun Game...");
+
+        var entered;
+      
+            let choice;
+            let computer;
+            let array = ["", "Snake", "Water", "Gun"];
+            alert("<h1>Enter the Following Number : "
+                + "<br>1.Snake<br>2.Water<br>3.Gun<br>4.Exit");
+            choice = Number.parseInt(prompt("Enter Your Choice..."))
+            computer =  Number.parseInt(Math.floor(Math.random() * 4) + 1);
+
+            document.write("You Choice " + array[choice] + "<br>And Computer Choose" + array[computer]+"<br>");
+            if (choice == 1 && computer == 2 || choice == 2 && computer == 3 || choice == 3 && computer == 1)
+                document.write("You Winning This Match")
+            else if (choice == 2 && computer == 1 || choice == 3 && computer == 2 || choice == 1 && computer == 3)
+                document.write("Computer Winning This Match")
+            else
+                document.write("This Match is Taii Soo Do next try")
+
+            let a = prompt("Enter the Color : ")
+            if(confirm("Are You Want To Go Page ?"))
+             document.body.style.backgroundColor=a;
+            
+            let getfirst=document.body.firstChild();
+            document.write(getfirst)
+            console.log(document.body.firstChild())
+           
+    </script> -->
+    <script>
+        let user = prompt("Enter S/W/G")
+        let cpuI = Math.floor(Math.random()*3)
+        let cpu = ["S","W","G"][cpuI]
+        // document.write(cpu)
+        function winner(user,cpu) {
+            if(user == cpu){
+                return "Tie this Match.".toUpperCase()
+            }else if(user=="S" &&  cpu=="W" || user=="W" &&  cpu=="G" || user=="G" &&  cpu=="S" ){
+                return "USer is Win this Match.".toUpperCase()
+            }
+            else if(user=="S" &&  cpu=="G" || user=="W" &&  cpu=="S" || user=="G" &&  cpu=="W"){
+                return "CPU is Win this Match.".toUpperCase()
+            }
+        }
+        let result = winner(user,cpu)
+        document.write(`User : ${user} <br>`)
+        document.write(`CPU : ${cpu} <br>`)
+        document.write(result)
+    </script>
+</body>
+
+</html>

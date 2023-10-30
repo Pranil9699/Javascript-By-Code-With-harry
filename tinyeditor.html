@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
+</head>
+<body>
+
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<script type="text/javascript">
+function deleteContact(cid){
+	console.log("done")
+	swal({
+		  title: "Are you sure?",
+		  text: "Your Want to Delete This contact!",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		    window.location="/user/delete/"+cid;
+		  } else {
+		    swal("Contact is Safed !");
+		  }
+		});
+}
+console.log(deleteContact(13))
+</script>
+
+
+  <textarea>Next, use our Get Started docs to setup Tiny!</textarea>
+</body>
+</html>

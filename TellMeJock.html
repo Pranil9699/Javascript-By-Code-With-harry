@@ -1,0 +1,95 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div>
+        <header style="text-align: center;background-color: antiquewhite;border: 1px solid seashell;">
+            <h1><b>let's Get A Jock!</b></h1>
+        </header>
+    </div>
+
+    <div style="display: flex;padding: 10px;">
+        <div><button type="button" onclick="letsJock()" style="background-color: aquamarine;margin:auto;text-align: center;text-overflow: clip;margin: 10px;">Click For Jock</button></div>
+        <div class="jockcontainer" style="padding: 10px;width:100%;background-color: rgb(150, 227, 150);margin: 10px;">{Click to Button for the Jock}</div>
+    </div>
+
+
+    <div class="history" style="background-color: antiquewhite;"></div>
+    <script>
+        var array=[];
+
+function letsJock(){
+
+
+
+    const jokes = [
+  "Why don't scientists trust atoms? Because they make up everything!",
+  "Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them!",
+  "Why did the scarecrow win an award? Because he was outstanding in his field!",
+  "Why don't some couples go to the gym? Because some relationships don't work out!",
+  "What did one ocean say to the other ocean? Nothing, they just waved.",
+  "Why did the bicycle fall over? It was two-tired!",
+  "Why don't skeletons fight each other? They don't have the guts!",
+  "Why don't scientists trust atoms? Because they make up everything!",
+  "Why do we never tell secrets on a farm? Because the potatoes have eyes and the corn has ears.",
+  "Why do we never tell secrets on a farm? Because the potatoes have eyes and the corn has ears.",
+  "Why did the scarecrow win an award? Because he was outstanding in his field!",
+  "Why don't some couples go to the gym? Because some relationships don't work out!",
+  "Why did the bicycle fall over? It was two-tired!",
+  "Why don't skeletons fight each other? They don't have the guts!",
+  "Why don't scientists trust atoms? Because they make up everything!",
+  "Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them!",
+  "Why did the scarecrow win an award? Because he was outstanding in his field!",
+  "Why don't some couples go to the gym? Because some relationships don't work out!",
+  "What did one ocean say to the other ocean? Nothing, they just waved.",
+  "Why did the bicycle fall over? It was two-tired!",
+  "Why don't skeletons fight each other? They don't have the guts!",
+  "Why don't scientists trust atoms? Because they make up everything!",
+  "Why do we never tell secrets on a farm? Because the potatoes have eyes and the corn has ears.",
+  "Why do we never tell secrets on a farm? Because the potatoes have eyes and the corn has ears.",
+  "Why did the scarecrow win an award? Because he was outstanding in his field!",
+  "Why don't some couples go to the gym? Because some relationships don't work out!",
+  "Why did the bicycle fall over? It was two-tired!",
+  "Why don't skeletons fight each other? They don't have the guts!",
+  "Why don't scientists trust atoms? Because they make up everything!",
+  "Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them!",
+  "Why did the scarecrow win an award? Because he was outstanding in his field!",
+  "Why don't some couples go to the gym? Because some relationships don't work out!",
+  "What did one ocean say to the other ocean? Nothing, they just waved.",
+  "Why did the bicycle fall over? It was two-tired!",
+  "Why don't skeletons fight each other? They don't have the guts!",
+];
+
+
+const randomIndex = getRandomInt(0, jokes.length - 1);
+const randomJoke = jokes[randomIndex];
+
+console.log(randomJoke.substring(0,randomJoke.indexOf("?"))+" ? "+ randomJoke.substring(randomJoke.indexOf("?")+1,randomJoke.length))
+
+console.log(document.getElementsByClassName('jockcontainer')[0])
+document.getElementsByClassName('jockcontainer')[0].innerHTML=randomJoke;
+array.push(randomJoke)
+let history={};
+array.forEach(function (element){
+    history+=`<h4>${element}</h4>`
+})
+console.log(history);
+document.getElementsByClassName('history')[0].innerHTML=history
+}
+
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+    </script>
+</body>
+
+</html>

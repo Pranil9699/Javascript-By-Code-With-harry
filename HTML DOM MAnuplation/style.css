@@ -1,0 +1,18 @@
+.second {
+  color: red;
+  background-color: black;
+}
+.second-text {
+  color: yellow;
+  background: #000;
+}
+
+.shine {
+  height: 200px;
+  width: 200px;
+  background-color: yellow;
+}
+.unshine {
+  height: 200px;
+  width: 200px;
+}
