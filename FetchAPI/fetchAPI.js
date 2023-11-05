@@ -2,9 +2,9 @@ let data = fetch("https://chroniclingamerica.loc.gov/newspapers.json", { timeout
 
 data
   .then((value) => {
-    // if (!value.ok) {
-    //   throw new Error(`HTTP error! Status: ${value.status}`);
-    // }
+    if (!value.ok) {
+      throw new Error(`HTTP error! Status: ${value.status}`);
+    }
     console.log(value.status);
     console.log(value.ok);
     return value.text();
