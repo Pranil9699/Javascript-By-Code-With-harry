@@ -1,0 +1,164 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    table,tr,td,th{
+        border: 2px dotted blue;
+        text-align: center;
+    border-collapse: collapse;
+    text-shadow: 1px 1px 1px 1px red;
+    }
+</style>
+</head>
+<body>
+    <!-- <div id ="forid">
+     <p id="hello">Some random text</p> 
+        <p>hello</p>
+        <p>hello</p>
+        </div>
+        <div id ="forid">
+             <p id="hello">Some random text</p>
+            <p>bye</p>
+            <p>bye</p>
+            <input type="image" src="Default.jpg" alt="">
+            </div> -->
+            <table id='my-table' width='500' height='150'></table>
+        <script src="jquery-3.1.1.min.js"></script>
+        <script>
+            var data = [
+ { type: "Name", content: "John Doe" },
+ { type:"case", content:"BreakUp"}
+ { type: "Birthdate", content: "01/01/1970" },
+ { type: "Salary", content: "$40,000,000" },
+ // ...300 more rows...
+ { type: "Favorite Flavour", content: "Sour" }
+];
+var i; // <- the current item number
+var count = data.length; // <- the total
+var row; // <- for holding a reference to our row object
+// Loop over the array
+// for ( i = 0; i < count; ++i ) {
+//  row = data[ i ];
+//  // Put the whole row into your table
+//  $('#my-table').append(
+//  $('<tr></tr>').append(
+//  $('<th></th>').html(row.type),
+//  $('<td></td>').html(row.content)
+//  )
+//  );
+// }
+//  -------------------------------------------Method 1--------------------------------------------
+// 1. Add to a separate array, append after loop complete
+
+/**
+ * Repeated DOM traversal (following the tree of elements down until you reach
+ * what you're looking for - like our <table>) should also be avoided wherever possible.
+ */
+// Keep the table cached in a variable then use it until you think it's been removed
+
+
+/*
+var $myTable = $('#my-table');
+// To hold our new <tr> jQuery objects
+var rowElements = [];
+var count = data.length;
+var i;
+
+// Loop over the array
+for ( i = 0; i < count; ++i ) {
+    var row=data[i];
+    rowElements.push( $('<tr></tr>').append(  $('<td></td>').html(row.type) , $('<td></td>').html(row.content)) );
+}
+// Finally, insert ALL rows at once
+$myTable.append(rowElements);
+
+
+*/
+//-----------------------------------------------Method 2-------------------------------------------
+//2.2. Using modern Array.* methods
+
+/* 
+var $myTable = $('#my-table');
+// Looping with the .map() method
+// - This will give us a brand new array based on the result of our callback function
+var rowElements = data.map(function ( row ) {
+ // Create a row
+ var $row = $('<tr></tr>');
+ // Create the columns
+ var $type = $('<td></td>').html(row.type);
+ var $content = $('<td></td>').html(row.content);
+ // Add the columns to the row
+ $row.append($type, $content);
+ // Add to the newly-generated array
+ return $row;
+});
+// Finally, put ALL of the rows into your table
+$myTable.append(rowElements);
+*/
+//-------------------------------------------Method 3--------------------------------
+// 3 Using strings of HTML (instead of jQuery built-in methods)
+
+/*
+var rowElements = data.map(function ( row ) {
+ var rowHTML = '<tr><td>';
+ rowHTML += row.type;
+ rowHTML += '</td><td>';
+ rowHTML += row.content;
+ rowHTML += '</td></tr>';
+ return rowHTML;
+});
+// Using .join('') here combines all the separate strings into one
+$myTable.append(rowElements.join(''));
+*/
+// -------------------------------------------Method 4----------------------------------
+//  4. Manually create elements, append to document fragment
+
+var $myTable = $(document.getElementById('my-table'));
+/**
+ * Create a document fragment to hold our columns
+ * - after appending this to each row, it empties itself
+ * so we can re-use it in the next iteration.
+ */
+var colFragment = document.createDocumentFragment();
+/**
+ * Loop over the array using .reduce() this time.
+ * We get a nice, tidy output without any side-effects.
+ * - In this example, the result will be a
+ * document fragment holding all the <tr> elements.
+ */
+var rowFragment = data.reduce(function ( fragment, row ) {
+ // Create a row
+ var rowEl = document.createElement('tr');
+ // Create the columns and the inner text nodes
+ var typeEl = document.createElement('td');
+ var typeText = document.createTextNode(row.type);
+ typeEl.appendChild(typeText);
+ var contentEl = document.createElement('td');
+ var contentText = document.createTextNode(row.content);
+ contentEl.appendChild(contentText);
+ // Add the columns to the column fragment
+ // - this would be useful if columns were iterated over separately
+ // but in this example it's just for show and tell.
+ colFragment.appendChild(typeEl);
+ colFragment.appendChild(contentEl);
+ rowEl.appendChild(colFragment);
+ // Add rowEl to fragment - this acts as a temporary buffer to
+ // accumulate multiple DOM nodes before bulk insertion
+ fragment.appendChild(rowEl);
+ return fragment;
+}, document.createDocumentFragment());
+// Now dump the whole fragment into your table
+$myTable.append(rowFragment);
+
+
+        </script>
+        <!-- <script>
+    var $div = $("#forid");
+    var variable = $div[1];
+ console.log(variable);
+        </script>  -->
+</body>
+</html>
